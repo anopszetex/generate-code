@@ -1,0 +1,41 @@
+{
+  "name": "@anopszetex/generate-code",
+  "version": "1.0.0",
+  "description": "Templates creation and structure of project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "NODE_ENV=production eslint . --fix",
+    "lint:ci": "NODE_ENV=production eslint .",
+    "format": "prettier . -w -u",
+    "format:check": "prettier . -c -u",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --runInBand --no-cache --config jest.config.mjs",
+    "test:bail": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --bail --runInBand --no-cache --config jest.config.mjs",
+    "test:watch": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --watch --runInBand --no-cache --config jest.config.mjs",
+    "test:cov": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --coverage --config jest.config.mjs",
+    "test:check": "npm run lint && npm run format:check && npm run test:bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anopszetex/generate-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anopszetex/generate-code/issues"
+  },
+  "homepage": "https://github.com/anopszetex/generate-code#readme",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "eslint": "^8.24.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.7.1"
+  }
+}
