@@ -1,14 +1,9 @@
 /* eslint-disable node/no-extraneous-import */
-import { beforeEach, describe, expect, jest, test } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 
 import Util from '../../src/utils/index.js';
 
 describe('#Util - Strings', () => {
-  beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.clearAllMocks();
-  });
-
   test('#upperCaseFirstLetter should transform the first letter in upperCase', () => {
     const result = Util.upperCaseFirstLetter('product');
     const expected = 'Product';
