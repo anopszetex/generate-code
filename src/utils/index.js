@@ -12,10 +12,10 @@ export default class Util {
     }
 
     if (upperCase) {
-      return str.charAt(0).toUpperCase().concat(str.slice(1));
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    return str.charAt(0).toLowerCase().concat(str.slice(1));
+    return str.charAt(0).toLowerCase() + str.slice(1);
   }
 
   /**
