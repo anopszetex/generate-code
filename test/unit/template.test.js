@@ -1,5 +1,5 @@
 /* eslint-disable node/no-extraneous-import */
-import { beforeEach, describe, expect, jest, test } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 
 import templates from './../../src/templates/index.js';
 import {
@@ -15,11 +15,6 @@ describe('#Codegen 3-layers arch', () => {
   const repositoryName = `${componentName}Repository`;
   const serviceName = `${componentName}Service`;
   const factoryName = `${componentName}Factory`;
-
-  beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.clearAllMocks();
-  });
 
   test('#should generate repository template', () => {
     const expected = {
