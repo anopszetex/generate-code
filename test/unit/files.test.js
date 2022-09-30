@@ -114,5 +114,67 @@ describe('#Layers - Files Structure', () => {
     expect(templates.repositoryTemplate).toHaveBeenCalledTimes(1);
   });
 
-  test.todo('#factory should have repository and service as dependencies');
+  test('#factory should have repository and service as dependencies', async () => {
+    jest.spyOn(fsPromises, fsPromises.writeFile.name).mockResolvedValue();
+
+    jest.spyOn(templates, templates.repositoryTemplate.name).mockReturnValue({
+      fileName: 'heroesRepository',
+      template: '',
+    });
+
+    jest.spyOn(templates, templates.serviceTemplate.name).mockReturnValue({
+      fileName: 'heroesService',
+      template: '',
+    });
+
+    jest.spyOn(templates, templates.factoryTemplate.name).mockReturnValue({
+      fileName: 'heroesFactory',
+      template: '',
+    });
+
+    const myConfig = {
+      ...config,
+    };
+
+    const expected = { success: true };
+    const result = await createFiles(myConfig);
+
+    expect(result).toStrictEqual(expected);
+
+    expect(fsPromises.writeFile).toHaveBeenCalledTimes(myConfig.layers.length);
+
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/repository/heroesRepository.js',
+      undefined
+    );
+
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/service/heroesService.js',
+      undefined
+    );
+
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/factory/heroesFactory.js',
+      undefined
+    );
+
+    expect(templates.repositoryTemplate).toHaveBeenCalledWith(
+      myConfig.componentName
+    );
+
+    expect(templates.serviceTemplate).toHaveBeenCalledWith(
+      myConfig.componentName,
+      repositoryLayer
+    );
+
+    expect(templates.factoryTemplate).toHaveBeenCalledWith(
+      myConfig.componentName,
+      repositoryLayer,
+      serviceLayer
+    );
+
+    expect(templates.serviceTemplate).toHaveBeenCalledTimes(1);
+    expect(templates.repositoryTemplate).toHaveBeenCalledTimes(1);
+    expect(templates.factoryTemplate).toHaveBeenCalledTimes(1);
+  });
 });
