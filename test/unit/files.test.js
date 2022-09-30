@@ -15,6 +15,9 @@ describe('#Layers - Files Structure', () => {
     layers: defaultLayers,
   };
 
+  const repositoryLayer = `${config.componentName}Repository`;
+  const serviceLayer = `${config.componentName}Service`;
+
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.clearAllMocks();
@@ -51,13 +54,65 @@ describe('#Layers - Files Structure', () => {
     expect(result).toStrictEqual(expected);
 
     expect(fsPromises.writeFile).toHaveBeenCalledTimes(myConfig.layers.length);
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/repository/heroesRepository.js',
+      undefined
+    );
 
     expect(templates.repositoryTemplate).toHaveBeenCalledWith(
       myConfig.componentName
     );
+
+    expect(templates.repositoryTemplate).toHaveBeenCalledTimes(1);
   });
 
-  test.todo('#service should have repository as dependency');
+  test('#service should have repository as dependency', async () => {
+    jest.spyOn(fsPromises, fsPromises.writeFile.name).mockResolvedValue();
+
+    jest.spyOn(templates, templates.repositoryTemplate.name).mockReturnValue({
+      fileName: 'heroesRepository',
+      template: '',
+    });
+
+    jest.spyOn(templates, templates.serviceTemplate.name).mockReturnValue({
+      fileName: 'heroesService',
+      template: '',
+    });
+
+    const myConfig = {
+      ...config,
+      layers: ['repository', 'service'],
+    };
+
+    const expected = { success: true };
+    const result = await createFiles(myConfig);
+
+    expect(result).toStrictEqual(expected);
+
+    expect(fsPromises.writeFile).toHaveBeenCalledTimes(myConfig.layers.length);
+
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/repository/heroesRepository.js',
+      undefined
+    );
+
+    expect(fsPromises.writeFile).toHaveBeenCalledWith(
+      './/src/service/heroesService.js',
+      undefined
+    );
+
+    expect(templates.repositoryTemplate).toHaveBeenCalledWith(
+      myConfig.componentName
+    );
+
+    expect(templates.serviceTemplate).toHaveBeenCalledWith(
+      myConfig.componentName,
+      repositoryLayer
+    );
+
+    expect(templates.serviceTemplate).toHaveBeenCalledTimes(1);
+    expect(templates.repositoryTemplate).toHaveBeenCalledTimes(1);
+  });
 
   test.todo('#factory should have repository and service as dependencies');
 });
