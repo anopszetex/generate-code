@@ -6,3 +6,4 @@ docker/sidecar/vendor
 dist/
 coverage/
 public/
+README.md
