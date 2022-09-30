@@ -8,7 +8,7 @@ import Util from './utils/index.js';
  *
  * @param {string} layer - layer name
  * @param {string} componentName- component name
- * @returns
+ * @returns {string[]|[]}
  */
 function defaultDependencies(layer, componentName) {
   const dependencies = {
