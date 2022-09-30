@@ -1,4 +1,3 @@
-// import fs from 'fs';
 import fsPromises from 'fs/promises';
 
 import templates from './templates/index.js';
