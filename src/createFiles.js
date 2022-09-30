@@ -7,7 +7,7 @@ import Util from './utils/index.js';
  * Function responsible to pass the arguments to the templates
  *
  * @param {string} layer - layer name
- * @param {string} componentName- component name
+ * @param {string} componentName - component name
  * @returns {string[]|[]}
  */
 function defaultDependencies(layer, componentName) {
