@@ -6,7 +6,7 @@ const repositoryAnchor = '$$repositoryName';
 
 const template = `
 export default class $$componentNameService {
-  constructor({ respository: $$repositoryName }) {
+  constructor({ repository: $$repositoryName }) {
     $$currentContext = $$repositoryName;
   }
 
