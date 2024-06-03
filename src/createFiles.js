@@ -8,7 +8,7 @@ import Util from './utils/index.js';
  *
  * @param {string} layer - layer name
  * @param {string} componentName - component name
- * @returns {string[]|[]}
+ * @returns {string[]}
  */
 function defaultDependencies(layer, componentName) {
   const dependencies = {
@@ -75,7 +75,7 @@ export async function createFiles(args) {
     // e.g: /Users/Document/codegen/src/repository/heroesRepository.js
     const path = `${targetFolder}/${Util.lowerCaseFirstLetter(fileName)}.js`;
 
-    pendingFilesToWrite.push({ fileName: path, txtFile });
+    pendingFilesToWrite.push({ fileName: path, template: txtFile });
   }
 
   await executeWrites(pendingFilesToWrite);
