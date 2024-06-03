@@ -1,0 +1,7 @@
+{
+  "name": "@anopszetex/generate-code",
+  "version": "1.0.0",
+  "description": "Templates creation and structure of project",
+  "main": "index.js",
+  "type": "module"
+}
